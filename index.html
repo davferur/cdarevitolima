@@ -211,7 +211,7 @@ h3{font-size:1.12rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif}
   .nav>a.on{background:var(--green-50);border-radius:8px;padding-left:10px;padding-right:10px}}
 
 /* encabezado de página interna */
-.phead{background:var(--ivory-2);border-bottom:1px solid var(--line);padding:36px 0 32px}
+
 .phead h1{font-size:clamp(1.7rem,3.6vw,2.6rem);margin-bottom:10px}
 .phead p{color:var(--ink-2);font-size:1rem;max-width:620px}
 .crumb{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.11em;
@@ -739,7 +739,7 @@ footer li a:hover{color:#fff}
 
 
 /* ---------- ENCABEZADO DE PÁGINA CON FOTO DE FONDO ---------- */
-.phead{position:relative;overflow:hidden;min-height:210px;display:flex;align-items:center;isolation:isolate;z-index:0}
+
 .phead .wrap{position:relative;z-index:2}
 .phead-bg{position:absolute;inset:0 0 0 auto;width:72%;z-index:0;pointer-events:none;overflow:hidden}
 .phead-bg img{width:100%;height:100%;object-fit:cover;object-position:center 45%;opacity:.88;
@@ -753,13 +753,50 @@ footer li a:hover{color:#fff}
   background:linear-gradient(90deg,var(--ivory-2) 0%,rgba(244,242,234,.88) 9%,rgba(244,242,234,.42) 24%,rgba(244,242,234,.06) 44%,rgba(244,242,234,0) 58%)}
 .phead h1,.phead p,.phead .crumb{max-width:480px}
 @media(max-width:940px){
-  .phead{min-height:180px}
-  .phead-bg{width:100%}
+    .phead-bg{width:100%}
   .phead-bg img{opacity:.55;
     -webkit-mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.55) 35%,#000 100%);
             mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.55) 35%,#000 100%)}
   .phead-bg::after{background:linear-gradient(180deg,rgba(244,242,234,.90) 0%,rgba(244,242,234,.34) 55%,rgba(244,242,234,.66) 100%)}
   .phead h1,.phead p,.phead .crumb{max-width:none}
+}
+
+/* ═══════ ENCABEZADO CON FOTO (definitivo) ═══════ */
+.phead{
+  position:relative;overflow:hidden;isolation:isolate;
+  background:var(--ivory-2);border-bottom:1px solid var(--line);
+  padding:42px 0 38px;min-height:180px;
+}
+.phead .wrap{position:relative;z-index:2}
+.phead h1,.phead p,.phead .crumb{max-width:480px}
+
+.phead-bg{
+  position:absolute;top:0;right:0;bottom:0;left:auto;
+  width:65%;z-index:0;pointer-events:none;overflow:hidden;
+}
+.phead-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:center 45%;
+  opacity:.75;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.15) 15%,rgba(0,0,0,.6) 35%,#000 60%);
+          mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.15) 15%,rgba(0,0,0,.6) 35%,#000 60%);
+}
+.phead-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--ivory-2) 0%,rgba(244,242,234,.85) 12%,rgba(244,242,234,.35) 28%,transparent 52%),
+             linear-gradient(180deg,transparent 0%,transparent 78%,var(--ivory-2) 100%);
+}
+
+@media(max-width:940px){
+  .phead{min-height:140px;padding:30px 0 26px}
+  .phead-bg{width:100%;opacity:.7}
+  .phead-bg img{opacity:.45;
+    -webkit-mask-image:none;mask-image:none}
+  .phead-bg::after{background:linear-gradient(180deg,
+    rgba(244,242,234,.88) 0%,rgba(244,242,234,.45) 50%,rgba(244,242,234,.82) 100%)}
+  .phead h1,.phead p,.phead .crumb{max-width:none}
+}
+@media(max-width:640px){
+  .phead{min-height:120px;padding:24px 0 22px}
 }
 
 /* ---------- FONDO FOTOGRÁFICO DEL HERO ---------- */
@@ -940,7 +977,7 @@ footer li a:hover{color:#fff}
   section{padding:38px 0}
   .sec-head{margin-bottom:26px}
   .hero{padding:26px 0 34px}
-  .phead{min-height:150px;padding-top:24px;padding-bottom:22px}
+  
   .btn{padding:11px 18px;font-size:.87rem}
   .btn-sm{padding:8px 14px;font-size:.8rem}
   .hero-cta{gap:8px}
@@ -1021,6 +1058,8 @@ footer li a:hover{color:#fff}
   .hdr-act .btn-p{padding:7px 11px;font-size:.73rem}
   .logo img{height:32px;max-width:112px}
 }
+
+
 
 /* ---------- NOTIF BELL ---------- */
 .notif-bell{position:relative;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
@@ -2373,45 +2412,54 @@ function vGroupOf(subId){
 }
 const SERVICES = [
   {id:'rtm', name:'Revisión técnico-mecánica y de gases', groups:['moto','publico','particular'],
-    desc:'Verificación completa de las condiciones mecánicas, de seguridad y emisiones de tu vehículo, con orientación clara sobre cada punto revisado.',
+    desc:'Verificación completa del estado mecánico, de seguridad y emisiones. Resultado reportado al RUNT el mismo día.',
     detalle:{
-      moto:'Revisamos frenos, dirección, suspensión, luces, llantas, espejos, sistema eléctrico y emisiones. El proceso para moto es el más ágil del centro.',
-      particular:'Revisamos frenos, dirección, suspensión, luces, llantas, vidrios, cinturones, sistema eléctrico, chasis y emisiones de gases.',
-      publico:'Revisión con los requisitos adicionales que exige el servicio público: elementos de seguridad, cinturones, salidas de emergencia y estado general de la carrocería.'
+      moto:'Revisamos frenos, dirección, suspensión, luces, llantas, espejos, sistema eléctrico y emisiones. Entre 15 y 20 minutos en nuestra pista exclusiva para motos.',
+      particular:'Frenos, suspensión, dirección, luces, vidrios, cinturones, chasis y emisiones de gases. Entre 25 y 35 minutos.',
+      publico:'Todos los puntos de la revisión estándar más los requisitos de seguridad del servicio público: cinturones, salidas de emergencia y señalización. Entre 30 y 45 minutos.'
     },
-    tiempo:{moto:'15 a 20 minutos', particular:'25 a 35 minutos', publico:'30 a 45 minutos'}},
+    tiempo:{moto:'15 – 20 min',particular:'25 – 35 min',publico:'30 – 45 min'},
+    incluye:['Revisión de gases incluida','Reporte automático al RUNT','Orientación punto por punto'],
+    ico:'rtm'},
   {id:'reinsp', name:'Reinspección', groups:['moto','publico','particular'],
-    desc:'Segunda visita cuando el vehículo debe volver tras corregir una observación de la primera revisión.',
+    desc:'Si tu vehículo no aprobó, tienes 15 días calendario para corregir y volver. Solo revisamos lo pendiente.',
     detalle:{
-      moto:'Solo revisamos los puntos que quedaron pendientes en tu primera visita. Trae el comprobante de la revisión anterior.',
-      particular:'Solo revisamos los puntos que quedaron pendientes en tu primera visita. Trae el comprobante de la revisión anterior.',
-      publico:'Solo revisamos los puntos que quedaron pendientes en tu primera visita. Trae el comprobante de la revisión anterior.'
+      moto:'Verificamos únicamente los puntos que quedaron pendientes en la primera revisión. Si pasaron más de 15 días, se realiza revisión completa.',
+      particular:'Se evalúan solo las observaciones del primer informe. Si pasaron más de 15 días desde la primera revisión, se cobra como revisión completa.',
+      publico:'Aplican las mismas condiciones: dentro del plazo de 15 días solo pagas reinspección; fuera del plazo, revisión completa.'
     },
-    tiempo:{moto:'10 a 15 minutos', particular:'15 a 25 minutos', publico:'20 a 30 minutos'}},
+    tiempo:{moto:'10 – 15 min',particular:'15 – 20 min',publico:'20 – 25 min'},
+    incluye:['Solo puntos pendientes','Plazo de 15 días calendario','Se cobra aparte de la primera revisión'],
+    ico:'reinsp'},
   {id:'peritaje', name:'Peritaje técnico', groups:['moto','publico','particular'],
-    desc:'Avalúo técnico del estado real del vehículo, útil para compraventa, aseguradoras o traspasos.',
+    desc:'Informe detallado del estado real del vehículo: motor, caja, chasis, latonería y desgaste. Ideal para compraventa.',
     detalle:{
-      moto:'Informe del estado real de la moto: motor, transmisión, chasis, kilometraje y desgaste. Ideal si vas a comprar o vender.',
-      particular:'Informe del estado real del vehículo: motor, caja, chasis, latonería, kilometraje y desgaste. Ideal para compraventa o aseguradora.',
-      publico:'Informe técnico del estado del vehículo de servicio público, con foco en los componentes de mayor exigencia por su uso intensivo.'
+      moto:'Evaluamos motor, transmisión, estado del chasis, suspensión y desgaste general. Te entregamos un informe escrito.',
+      particular:'Revisión exhaustiva de motor, caja, suspensión, chasis, latonería, pintura y niveles de desgaste. Informe técnico detallado.',
+      publico:'Peritaje completo con especial atención a los sistemas de seguridad del servicio público.'
     },
-    tiempo:{moto:'30 a 40 minutos', particular:'40 a 60 minutos', publico:'45 a 60 minutos'}},
+    tiempo:{moto:'20 – 30 min',particular:'30 – 45 min',publico:'40 – 60 min'},
+    incluye:['Informe técnico escrito','Para compraventa o seguro','Sin compromiso con el resultado'],
+    ico:'peritaje'},
   {id:'preventiva', name:'Revisión preventiva de viaje', groups:['moto','publico','particular'],
-    desc:'Chequeo de los puntos críticos de seguridad antes de salir a carretera. Gratis al inscribirte en nuestros recordatorios.',
+    desc:'Revisión gratuita de los puntos críticos de seguridad antes de salir a carretera. Regalo por inscribirte en recordatorios.',
     detalle:{
-      moto:'Revisamos llantas, frenos, luces, cadena, niveles y presión antes de que salgas a carretera. Sin costo.',
-      particular:'Revisamos llantas, frenos, luces, niveles de aceite y refrigerante, batería y limpiabrisas antes de tu viaje. Sin costo.',
-      publico:'Chequeo preventivo de los puntos críticos de seguridad antes de una ruta larga. Sin costo.'
+      moto:'Revisamos llantas, frenos, luces y cadena antes de tu viaje. Totalmente gratis con tu código de bono.',
+      particular:'Llantas, frenos, luces, niveles de líquidos y estado general para que viajes tranquilo. Sin costo.',
+      publico:'Los mismos puntos de seguridad, adaptados a las exigencias del servicio público.'
     },
-    tiempo:{moto:'10 a 15 minutos', particular:'15 a 20 minutos', publico:'15 a 25 minutos'}},
+    tiempo:{moto:'10 min',particular:'15 min',publico:'15 – 20 min'},
+    incluye:['100% gratis con código','Llantas, frenos, luces y niveles','No reemplaza la RTM obligatoria'],
+    ico:'preventiva'},
   {id:'financiacion', name:'Financiación Sistecrédito / Addi', groups:['moto','publico','particular'],
-    desc:'Financia el valor de tu revisión y págalo a cuotas. Aprobación en el mismo centro.',
+    desc:'Paga tu revisión a cuotas con aprobación en minutos, aquí mismo en el centro.',
     detalle:{
-      moto:'Financia tu revisión con Sistecrédito o Addi directamente en el centro, con aprobación en minutos.',
-      particular:'Financia tu revisión con Sistecrédito o Addi directamente en el centro, con aprobación en minutos.',
-      publico:'Financia la revisión de tu vehículo de servicio público con Sistecrédito o Addi.'
+      moto:'Financiamos el valor de la revisión de tu moto. La aprobación se gestiona aquí mismo en pocos minutos.',
+      particular:'Financiamos la revisión de tu carro con Sistecrédito o Addi. Sin fiador, con aprobación rápida.',
+      publico:'Disponible para servicio público. Te ayudamos con el proceso de solicitud en el momento.'
     },
-    tiempo:{moto:'Aprobación en minutos', particular:'Aprobación en minutos', publico:'Aprobación en minutos'}}
+    incluye:['Aprobación en minutos','Sin fiador','Pago a cuotas mensuales'],
+    ico:'financiacion'}
 ];
 
 /* ---------- USUARIOS Y ASESORES (multi-rol) ---------- */
@@ -2894,14 +2942,19 @@ function subChipsHTML(group, activeSub, attr){
   ).join('');
 }
 function servicesHTML(group){
-  return SERVICES.filter(s=>s.groups.includes(group)).map(s=>`
+  return SERVICES.filter(s=>s.groups.includes(group)).map(s=>{
+    const det = (s.detalle&&s.detalle[group])||s.desc;
+    const tm = s.tiempo&&s.tiempo[group];
+    const isGift = s.id==='preventiva';
+    return `
     <div class="card card-h svc-card">
       <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${SVC_ICON[s.id]||SVC_ICON.rtm}</svg></div>
       <h3 style="margin:15px 0 7px">${s.name}</h3>
-      <p style="font-size:.89rem;color:var(--ink-2)">${(s.detalle&&s.detalle[group])||s.desc}</p>
-      ${s.tiempo&&s.tiempo[group]?`<div class="svc-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>${s.tiempo[group]}</div>`:''}
-      ${s.id==='preventiva'?'<span class="svc-tag-free">GRATIS 🎁</span>':''}
-    </div>`).join('');
+      <p style="font-size:.89rem;color:var(--ink-2)">${det}</p>
+      ${tm?`<div class="svc-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>${tm}</div>`:''}
+      ${isGift?'<span class="svc-tag-free">GRATIS 🎁</span>':''}
+    </div>`;
+  }).join('');
 }
 
 /* Pasos del proceso, personalizados según el tipo de vehículo seleccionado */
