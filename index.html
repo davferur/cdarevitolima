@@ -737,22 +737,43 @@ footer li a:hover{color:#fff}
 
 
 
+
+/* ---------- ENCABEZADO DE PÁGINA CON FOTO DE FONDO ---------- */
+.phead{position:relative;overflow:hidden;min-height:210px;display:flex;align-items:center}
+.phead .wrap{position:relative;z-index:2}
+.phead-bg{position:absolute;top:0;right:0;bottom:0;width:58%;z-index:0;pointer-events:none}
+.phead-bg img{width:100%;height:100%;object-fit:cover;object-position:center 45%;opacity:.88;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 22%,rgba(0,0,0,.85) 50%,#000 74%);
+          mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 22%,rgba(0,0,0,.85) 50%,#000 74%)}
+.phead-bg::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--ivory-2) 0%,rgba(244,242,234,.74) 18%,rgba(244,242,234,.20) 44%,rgba(244,242,234,0) 64%)}
+.phead h1,.phead p,.phead .crumb{max-width:600px}
+@media(max-width:940px){
+  .phead{min-height:180px}
+  .phead-bg{width:100%}
+  .phead-bg img{opacity:.55;
+    -webkit-mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.55) 35%,#000 100%);
+            mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.55) 35%,#000 100%)}
+  .phead-bg::after{background:linear-gradient(180deg,rgba(244,242,234,.90) 0%,rgba(244,242,234,.34) 55%,rgba(244,242,234,.66) 100%)}
+  .phead h1,.phead p,.phead .crumb{max-width:none}
+}
+
 /* ---------- FONDO FOTOGRÁFICO DEL HERO ---------- */
 .hero{position:relative;overflow:hidden}
 .hero-in{position:relative;z-index:2;grid-template-columns:1fr!important;max-width:var(--maxw)}
 .hero-in > div{max-width:620px}
 .hero-bg{position:absolute;top:0;right:0;bottom:0;width:62%;z-index:0;pointer-events:none}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 42%;opacity:.42;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 26%,rgba(0,0,0,.85) 62%,#000 100%);
-          mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 26%,rgba(0,0,0,.85) 62%,#000 100%)}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 42%;opacity:.90;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 20%,rgba(0,0,0,.85) 48%,#000 72%);
+          mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.30) 20%,rgba(0,0,0,.85) 48%,#000 72%)}
 .hero-bg::after{content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,var(--ivory) 0%,rgba(251,250,246,.55) 22%,rgba(251,250,246,0) 55%)}
+  background:linear-gradient(90deg,var(--ivory) 0%,rgba(251,250,246,.72) 16%,rgba(251,250,246,.18) 42%,rgba(251,250,246,0) 62%)}
 @media(max-width:940px){
   .hero-bg{width:100%;opacity:1}
-  .hero-bg img{object-position:center 44%;opacity:.30;
+  .hero-bg img{object-position:center 44%;opacity:.62;
     -webkit-mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.6) 30%,#000 100%);
             mask-image:linear-gradient(180deg,transparent 0%,rgba(0,0,0,.6) 30%,#000 100%)}
-  .hero-bg::after{background:linear-gradient(180deg,rgba(251,250,246,.92) 0%,rgba(251,250,246,.40) 48%,rgba(251,250,246,.72) 100%)}
+  .hero-bg::after{background:linear-gradient(180deg,rgba(251,250,246,.90) 0%,rgba(251,250,246,.30) 50%,rgba(251,250,246,.62) 100%)}
   .hero-in > div{max-width:none}
 }
 
@@ -1300,6 +1321,7 @@ td small{display:block;color:var(--ink-3);font-size:.76rem;margin-top:1px}
     <h1 class="dsp">Servicios para <span class="g-accent">carros y motos</span></h1>
     <p>Revisión técnico-mecánica y de gases, con orientación clara en cada paso y opción de financiación.</p>
   </div></div>
+    <div class="phead-bg" aria-hidden="true"><img data-foto="pista" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
 
   <section id="servicios">
     <div class="wrap">
@@ -1383,6 +1405,7 @@ td small{display:block;color:var(--ink-3);font-size:.76rem;margin-top:1px}
     <h1 class="dsp">Consulta el valor <span class="g-accent">antes de venir</span></h1>
     <p>Selecciona tu vehículo y el servicio que necesitas. Al final te enviamos directo a WhatsApp con la información ya lista, para que te confirmemos el valor exacto sin que tengas que escribirla de nuevo.</p>
   </div></div>
+    <div class="phead-bg" aria-hidden="true"><img data-foto="recepcion" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
 
   <!-- TARIFAS: SIMULADOR -->
   <section id="tarifas" style="background:var(--ivory)">
@@ -1478,6 +1501,7 @@ td small{display:block;color:var(--ink-3);font-size:.76rem;margin-top:1px}
     <h1 class="dsp">Reserva tu turno en <span class="g-accent">4 pasos</span></h1>
     <p>Elige tu vehículo, la fecha y el horario disponible. Tu cita queda registrada en el centro al instante.</p>
   </div></div>
+    <div class="phead-bg" aria-hidden="true"><img data-foto="entrada" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
 
   <!-- AGENDAMIENTO -->
   <section id="agendar">
@@ -1608,6 +1632,7 @@ td small{display:block;color:var(--ink-3);font-size:.76rem;margin-top:1px}
     <h1 class="dsp">Nunca más pierdas la fecha de tu <span class="g-accent">revisión</span></h1>
     <p>Registra tu vehículo y te avisamos antes de que venza, por el canal que prefieras.</p>
   </div></div>
+    <div class="phead-bg" aria-hidden="true"><img data-foto="motos" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
   <section style="display:none">
     <div class="wrap">
       <div class="g4 rv">
@@ -1697,6 +1722,7 @@ td small{display:block;color:var(--ink-3);font-size:.76rem;margin-top:1px}
     <h1 class="dsp">Lo que más nos <span class="g-accent">preguntan</span></h1>
     <p>Documentos, tiempos, requisitos y condiciones de la revisión técnico-mecánica.</p>
   </div></div>
+    <div class="phead-bg" aria-hidden="true"><img data-foto="fachada" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
   <section id="faq">
     <div class="wrap">
       <div class="faq-nav rv" id="faqNav"></div>
@@ -1732,6 +1758,7 @@ td small{display:block;color:var(--ink-3);font-size:.76rem;margin-top:1px}
     <h1 class="dsp">Visítanos en <span class="g-accent">Ibagué</span></h1>
     <p>Teléfono, horarios y cómo llegar al centro de diagnóstico.</p>
   </div></div>
+    <div class="phead-bg" aria-hidden="true"><img data-foto="hero" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
 
   <!-- UBICACIÓN -->
   <section id="ubicacion" style="background:var(--ivory-2)">
@@ -1811,6 +1838,7 @@ td small{display:block;color:var(--ink-3);font-size:.76rem;margin-top:1px}
     <h1 class="dsp">Información <span class="g-accent">legal</span></h1>
     <p>Políticas de privacidad, términos de uso, cookies y aviso legal de CDA Revitolima.</p>
   </div></div>
+    <div class="phead-bg" aria-hidden="true"><img data-foto="via" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""></div>
   <section>
     <div class="wrap">
       <div class="legal-nav rv">
