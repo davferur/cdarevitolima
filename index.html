@@ -26,6 +26,11 @@
   "areaServed":"Ibagué, Tolima",
   "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"08:00","closes":"14:00"}]
 }
+
+
+
+
+
 </script>
 <style>
 :root{
@@ -548,6 +553,24 @@ footer li a:hover{color:#fff}
 .wa-f svg{width:28px;height:28px;color:#fff}
 @media(max-width:600px){.wa-f{bottom:16px;right:16px;width:52px;height:52px}}
 
+
+
+
+/* ═══ MENÚ HAMBURGUESA DE PORTALES — delegación global ═══ */
+document.addEventListener('click', e=>{
+  const btn = e.target.closest('[data-sideopen]');
+  if(!btn) return;
+  const target = btn.dataset.sideopen;
+  const side = target==='cli' ? document.getElementById('cliSide') : document.getElementById('admSide');
+  if(!side) return;
+  e.stopPropagation();
+  const isOpen = side.classList.toggle('open');
+  let ov = side.parentElement.querySelector('.side-ov');
+  if(!ov){ ov=document.createElement('div'); ov.className='side-ov'; side.parentElement.appendChild(ov); }
+  ov.classList.toggle('on', isOpen);
+  ov.onclick = ()=>{ side.classList.remove('open'); ov.classList.remove('on'); };
+});
+
 /* ---------- REVEAL ---------- */
 .rv{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
 .rv.in{opacity:1;transform:none}
@@ -1061,6 +1084,115 @@ footer li a:hover{color:#fff}
 
 
 
+
+/* ═══════ PORTALES: OPTIMIZACIÓN MÓVIL ═══════ */
+
+@media(max-width:640px){
+  /* Portales: todo más pequeño y cómodo */
+  .pmain{padding:14px!important}
+  .ptop{padding:10px 14px!important;gap:8px}
+  .ptop h2{font-size:1.1rem!important}
+  .ptop .btn{padding:8px 13px!important;font-size:.78rem!important}
+
+  /* KPIs compactos */
+  .kpis{grid-template-columns:repeat(2,1fr)!important;gap:10px!important}
+  .kpi{padding:14px 12px!important}
+  .kpi-v{font-size:1.4rem!important}
+  .kpi-t{font-size:.68rem!important}
+  .kpi-d{font-size:.68rem!important}
+
+  /* Paneles */
+  .panel{margin-bottom:14px!important}
+  .panel-h{padding:14px 16px!important;gap:10px}
+  .panel-h h3{font-size:.96rem!important}
+  .panel-h p{font-size:.76rem!important}
+  .panel-b{padding:14px 16px!important}
+
+  /* Tablas */
+  .tw{font-size:.78rem}
+  .tw th{padding:8px 10px!important;font-size:.68rem!important}
+  .tw td{padding:8px 10px!important;font-size:.78rem!important}
+
+  /* Botones del portal */
+  .panel-h .btn{padding:7px 12px!important;font-size:.74rem!important}
+  .iconbtn{width:32px!important;height:32px!important}
+  .iconbtn svg{width:15px!important;height:15px!important}
+
+  /* Calendarios */
+  .cal-grid{font-size:.72rem}
+  .cal-hcell{padding:6px 4px!important}
+  .cal-tcell{padding:6px 4px!important;font-size:.7rem}
+  .cal-cell{padding:4px!important;min-height:44px}
+  .cal-ev{font-size:.68rem!important;padding:4px 6px!important}
+  .cal-free{font-size:.64rem!important;padding:3px!important}
+
+  /* Gráficas */
+  .chart{gap:6px}
+  .chart-b b{font-size:.72rem}
+  .chart-b span{font-size:.66rem}
+
+  /* Alertas */
+  .alertbar{padding:12px 14px!important;font-size:.82rem!important;gap:10px}
+  .alertbar b{font-size:.84rem}
+  .alertbar p{font-size:.78rem}
+
+  /* Citas del asesor */
+  .ase-cita{padding:11px!important;gap:10px}
+  .ase-cita-time{padding:7px 10px!important;font-size:.9rem!important}
+  .ase-cita-body b{font-size:.86rem!important}
+  .ase-cita-body span{font-size:.72rem!important}
+
+  /* Hero del panel gerencial y asesor */
+  .ger-hero,.ase-hero{padding:18px 20px!important;gap:16px;flex-direction:column;align-items:flex-start}
+  .ger-hero h2,.ase-hero h2{font-size:1.2rem!important}
+  .ger-hero p,.ase-hero p{font-size:.78rem!important}
+  .ger-hero-kpi{padding:0 12px;border-left:none;border-top:1px solid rgba(255,255,255,.18);padding-top:10px}
+  .ger-hero-kpi b{font-size:1.4rem!important}
+  .ger-hero-kpi span{font-size:.62rem!important}
+  .ase-meta{min-width:auto;width:100%;padding:12px 16px!important}
+  .ase-meta-num{font-size:1.6rem!important}
+
+  /* Sidebar contenido */
+  .side{width:240px}
+  .side .logo img{height:34px!important}
+  .snav a{padding:10px 14px!important;font-size:.82rem!important;gap:9px}
+  .snav a svg{width:17px!important;height:17px!important}
+  .snav-lbl{font-size:.6rem!important;padding:16px 14px 5px!important}
+  .side-user{padding:12px 14px!important}
+  .side-user b{font-size:.84rem!important}
+  .side-user span{font-size:.68rem!important}
+  .side-foot{padding:10px 14px!important}
+
+  /* Formularios en portales */
+  .fgrid{grid-template-columns:1fr!important}
+  .modal-box{width:95vw!important;max-height:88vh;padding:20px!important}
+  .modal-box h2{font-size:1.1rem!important}
+
+  /* Notas y cajas de info */
+  .note-box{padding:14px 16px!important;font-size:.82rem!important}
+  .demo-hint{padding:10px 13px!important;font-size:.76rem!important}
+
+  /* Portal cliente */
+  .cli-welcome{padding:18px 20px!important}
+  .cli-welcome h2{font-size:1.15rem!important}
+  .cli-welcome p{font-size:.82rem!important}
+  .credit-card{padding:14px!important}
+  .credit-grid{gap:8px!important}
+  .credit-item{padding:9px 11px!important}
+  .credit-item span{font-size:.66rem!important}
+  .credit-item b{font-size:.88rem!important}
+
+  /* Navegación del portal cliente */
+  .cv-nav{gap:6px}
+  .cv-nav a{padding:9px 13px!important;font-size:.78rem!important}
+}
+
+@media(max-width:380px){
+  .kpis{grid-template-columns:1fr!important}
+  .ger-hero-kpi{display:flex;justify-content:space-between;align-items:center}
+  .side{width:220px}
+}
+
 /* ---------- NOTIF BELL ---------- */
 .notif-bell{position:relative;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
   background:var(--white);display:flex;align-items:center;justify-content:center;transition:.14s;flex-shrink:0}
@@ -1104,7 +1236,7 @@ footer li a:hover{color:#fff}
 @media(max-width:960px){
   .side{position:fixed;inset:0 auto 0 0;width:250px;z-index:300;transform:translateX(-105%);
     transition:transform .25s ease;height:100vh}
-  .side.open{transform:translateX(0)}
+  .side.open{transform:translateX(0)!important;box-shadow:20px 0 50px rgba(0,0,0,.3)}
   .side-ov{display:block;position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:299;opacity:0;visibility:hidden;transition:.24s}
   .side-ov.on{opacity:1;visibility:visible}
 }
@@ -2562,42 +2694,10 @@ const DB = {
       {cat:'otros', q:'¿Mi vehículo tiene conversión a gas, hay algo especial?', a:'Sí. Si tiene <b>GNV o GLP</b> debes presentar el <b>certificado de conversión vigente</b> además de los documentos habituales.'}
     ]
   },
-  clients:[
-    {id:'c1',doc:'1110512345',name:'Andrés Felipe Rojas',phone:'3124458890',email:'afrojas@correo.com',notes:'Cliente frecuente. Prefiere turnos de la mañana.'},
-    {id:'c2',doc:'65744120',name:'Luz Marina Cabrera',phone:'3105567712',email:'lmcabrera@correo.com',notes:''},
-    {id:'c3',doc:'93411870',name:'Jhon Édison Parra',phone:'3213398845',email:'',notes:'Solicitó financiación en dos ocasiones.'},
-    {id:'c4',doc:'1105889230',name:'Yeimy Carolina Sáenz',phone:'3187741205',email:'ycsaenz@correo.com',notes:''},
-    {id:'c5',doc:'14290055',name:'Transportes El Tolima S.A.S.',phone:'3145590012',email:'flota@transtolima.co',notes:'Cuenta empresarial. Maneja flota de 3 vehículos.'}
-  ],
-  vehicles:[
-    {id:'v1',plate:'GRT41E',type:'moto',cat:'Moto',clientId:'c1',due:iso(addDays(today,22))},
-    {id:'v2',plate:'IBK782',type:'automovil',cat:'Automóvil',clientId:'c1',due:iso(addDays(today,196))},
-    {id:'v3',plate:'HTC559',type:'camioneta',cat:'Camioneta',clientId:'c2',due:iso(addDays(today,9))},
-    {id:'v4',plate:'JQM17F',type:'moto',cat:'Moto',clientId:'c3',due:iso(addDays(today,-6))},
-    {id:'v5',plate:'KLN904',type:'automovil',cat:'Automóvil',clientId:'c4',due:iso(addDays(today,74))},
-    {id:'v6',plate:'SXT330',type:'taxi',cat:'Taxi',clientId:'c5',due:iso(addDays(today,3))},
-    {id:'v7',plate:'TRW118',type:'automovil',cat:'Automóvil',clientId:'c5',due:iso(addDays(today,128))}
-  ],
-  revisions:[
-    {id:'r1',vehicleId:'v1',date:iso(addDays(today,-343)),result:'Aprobada',notes:'Sin observaciones.'},
-    {id:'r2',vehicleId:'v1',date:iso(addDays(today,-712)),result:'Aprobada',notes:''},
-    {id:'r3',vehicleId:'v2',date:iso(addDays(today,-169)),result:'Aprobada',notes:'Se recomendó revisar alineación.'},
-    {id:'r4',vehicleId:'v3',date:iso(addDays(today,-356)),result:'Aprobada',notes:''},
-    {id:'r5a',vehicleId:'v4',date:iso(addDays(today,-379)),result:'Rechazada',notes:'Falla en sistema de frenos. Se cita a reinspección.'},
-    {id:'r5',vehicleId:'v4',date:iso(addDays(today,-371)),result:'Reaprobada',notes:'Reinspección: sistema de frenos corregido y aprobado.'},
-    {id:'r6',vehicleId:'v5',date:iso(addDays(today,-291)),result:'Aprobada',notes:''},
-    {id:'r7',vehicleId:'v6',date:iso(addDays(today,-362)),result:'Aprobada',notes:''}
-  ],
-  appts:[
-    {id:'a1',clientId:'c2',plate:'HTC559',name:'Luz Marina Cabrera',phone:'3105567712',type:'camioneta',date:iso(addDays(today,2)),time:'09:20',status:'Confirmada',source:'WhatsApp',advisorId:'ad1',confirmedArrival:false,notifiedBefore:false,notifiedAfter:false,contacted:false},
-    {id:'a2',clientId:'c1',plate:'GRT41E',name:'Andrés Felipe Rojas',phone:'3124458890',type:'moto',date:iso(addDays(today,5)),time:'08:00',status:'Confirmada',source:'Web',advisorId:'ad2',confirmedArrival:false,notifiedBefore:false,notifiedAfter:false,contacted:false},
-    {id:'a3',clientId:'c5',plate:'SXT330',name:'Transportes El Tolima S.A.S.',phone:'3145590012',type:'taxi',date:iso(addDays(today,1)),time:'10:40',status:'Pendiente',source:'Web',advisorId:'ad1',confirmedArrival:false,notifiedBefore:false,notifiedAfter:false,contacted:false},
-    {id:'a4',clientId:'c4',plate:'KLN904',name:'Yeimy Carolina Sáenz',phone:'3187741205',type:'automovil',date:iso(addDays(today,-3)),time:'11:20',status:'Completada',source:'Web',advisorId:'ad2',confirmedArrival:true,notifiedBefore:true,notifiedAfter:false,contacted:false},
-    {id:'a5',clientId:'c3',plate:'JQM17F',name:'Jhon Édison Parra',phone:'3213398845',type:'moto',date:iso(addDays(today,-8)),time:'12:00',status:'Cancelada',source:'Llamada',advisorId:'ad1',confirmedArrival:false,notifiedBefore:false,notifiedAfter:false,contacted:false},
-    {id:'a6',clientId:'c2',plate:'HTC559',name:'Luz Marina Cabrera',phone:'3105567712',type:'camioneta',date:iso(addDays(today,-15)),time:'08:40',status:'Completada',source:'Web',advisorId:'ad1',confirmedArrival:true,notifiedBefore:true,notifiedAfter:false,contacted:false},
-    {id:'a7',clientId:'c4',plate:'KLN904',name:'Yeimy Carolina Sáenz',phone:'3187741205',type:'automovil',date:iso(today),time:'09:20',status:'Pendiente',source:'Web',advisorId:'ad2',confirmedArrival:false,notifiedBefore:false,notifiedAfter:false,contacted:false},
-    {id:'a8',clientId:'c1',plate:'IBK782',name:'Andrés Felipe Rojas',phone:'3124458890',type:'automovil',date:iso(today),time:'09:20',status:'Pendiente',source:'Llamada',advisorId:'ad1',confirmedArrival:false,notifiedBefore:false,notifiedAfter:false,contacted:false}
-  ],
+  clients:[],
+  vehicles:[],
+  revisions:[],
+  appts:[],
   cartera:[
     {id:'k1',clientId:'c3',concept:'Revisión técnico-mecánica moto',amount:118000,due:iso(addDays(today,-34)),status:'Vencida'},
     {id:'k2',clientId:'c5',concept:'Revisión flota — 2 vehículos',amount:394000,due:iso(addDays(today,-11)),status:'Vencida'},
@@ -2607,18 +2707,8 @@ const DB = {
   ],
   // Créditos: solo generalidades (entidad, monto, fecha solicitud/desembolso, dia de pago).
   // Esta sección NO hace seguimiento de cuotas ni mora — eso lo gestiona cada entidad financiera.
-  credits:[
-    {id:'f1',clientId:'c3',entidad:'Sistecrédito',amount:118000,dateSolicitud:iso(addDays(today,-9)),dateDesembolso:null,status:'Pendiente',diaPago:null,cuotas:null,valorCuota:null,vigenciaHasta:null,owner:'Asesor comercial',notes:'Documentos enviados, en validación.'},
-    {id:'f2',clientId:'c5',entidad:'Sistecrédito',amount:394000,dateSolicitud:iso(addDays(today,-34)),dateDesembolso:iso(addDays(today,-21)),status:'Desembolsado',diaPago:'Día 5 de cada mes',cuotas:4,valorCuota:98500,vigenciaHasta:iso(addDays(today,99)),owner:'Asesor comercial',notes:'Aprobado y desembolsado.'},
-    {id:'f3',clientId:'c4',entidad:'Addi',amount:187000,dateSolicitud:iso(addDays(today,-46)),dateDesembolso:null,status:'Rechazado',diaPago:null,cuotas:null,valorCuota:null,vigenciaHasta:null,owner:'Asesor comercial',notes:'No cumplió requisitos de la entidad.'},
-    {id:'f4',clientId:'c2',entidad:'Addi',amount:212000,dateSolicitud:iso(addDays(today,-58)),dateDesembolso:iso(addDays(today,-40)),status:'Desembolsado',diaPago:'Día 15 de cada mes',cuotas:3,valorCuota:70700,vigenciaHasta:iso(addDays(today,50)),owner:'Asesor comercial',notes:'Desembolsado sin novedad.'},
-    {id:'f5',clientId:'c1',entidad:'Sistecrédito',amount:187000,dateSolicitud:iso(addDays(today,-5)),dateDesembolso:null,status:'Pendiente',diaPago:null,cuotas:null,valorCuota:null,vigenciaHasta:null,owner:'Asesor comercial',notes:'En estudio por la entidad.'}
-  ],
-  reminders:[
-    {id:'m1',name:'Luz Marina Cabrera',plate:'HTC559',type:'camioneta',due:iso(addDays(today,9)),phone:'3105567712',email:'lmcabrera@correo.com',channel:'WhatsApp',converted:true,origin:'anual'},
-    {id:'m2',name:'Jhon Édison Parra',plate:'JQM17F',type:'moto',due:iso(addDays(today,-6)),phone:'3213398845',email:'',channel:'WhatsApp',converted:false,origin:'anual'},
-    {id:'m3',name:'Andrés Felipe Rojas',plate:'GRT41E',type:'moto',due:iso(addDays(today,22)),phone:'3124458890',email:'afrojas@correo.com',channel:'Correo',converted:false,origin:'inscripcion'}
-  ],
+  credits:[],
+  reminders:[],
   // Bandeja de notificaciones (admin + cliente). type: venc|noshow|inactividad|movimiento|credito|sistema
   notifications:[
     {id:'n1', role:'all', type:'venc', sev:'warn', text:'3 vehículos vencen su revisión en los próximos 7 días.', at:new Date(Date.now()-3600e3).toLocaleString('es-CO'), read:false},
@@ -2632,7 +2722,7 @@ const DB = {
   ],
   cashLedger:[], // {id, date, accountId, concept, amount, type:'ingreso'|'egreso'}
   // Volumen historico mensual (dato agregado de demostracion, no son registros individuales)
-  monthly:[38,44,41,52,47,29],
+  monthly:[0,0,0,0,0,0],
   log:[]
 };
 
@@ -2882,6 +2972,22 @@ document.addEventListener('click',e=>{ if(!dd.contains(e.target)) dd.classList.r
   $('#qaL').addEventListener('click',()=>tr.scrollBy({left:-230,behavior:'smooth'}));
   $('#qaR').addEventListener('click',()=>tr.scrollBy({left:230,behavior:'smooth'}));
 })();
+
+
+/* ═══ MENÚ HAMBURGUESA DE PORTALES — delegación global ═══ */
+document.addEventListener('click', e=>{
+  const btn = e.target.closest('[data-sideopen]');
+  if(!btn) return;
+  const target = btn.dataset.sideopen;
+  const side = target==='cli' ? document.getElementById('cliSide') : document.getElementById('admSide');
+  if(!side) return;
+  e.stopPropagation();
+  const isOpen = side.classList.toggle('open');
+  let ov = side.parentElement.querySelector('.side-ov');
+  if(!ov){ ov=document.createElement('div'); ov.className='side-ov'; side.parentElement.appendChild(ov); }
+  ov.classList.toggle('on', isOpen);
+  ov.onclick = ()=>{ side.classList.remove('open'); ov.classList.remove('on'); };
+});
 
 /* ---------- REVEAL ---------- */
 const io=new IntersectionObserver(es=>es.forEach(e=>{
@@ -4000,6 +4106,26 @@ function refreshBadges(){
   set('#bgCitas',pend); set('#bgVenc',venc); set('#bgMora',mora);
 }
 
+// Función para crear un cliente con acceso al portal
+function crearClientePortal(doc, name, phone, email, plate, type){
+  if(!doc || !name || !plate) return toast('Completa documento, nombre y placa');
+  let cl = DB.clients.find(c=>c.doc===doc);
+  if(!cl){
+    cl = {id:uid('c'), doc, name, phone:phone||'', email:email||'', notes:'Creado desde admin.'};
+    DB.clients.push(cl);
+  }
+  const det = detectVehicleByPlate(plate);
+  if(!vehByPlate(plate)){
+    DB.vehicles.push({id:uid('v'), plate:plate.toUpperCase(), type:type||(det?det.sub:'automovil'),
+      cat:vLabel(type||(det?det.sub:'automovil')), clientId:cl.id, due:null});
+  }
+  logAct('Cliente creado · ' + name + ' · ' + plate);
+  trackAction('crear-cliente');
+  renderAdmin();
+  toast('✅ Cliente registrado — ya puede ingresar al portal con su documento y placa');
+  return cl;
+}
+
 function renderAdmin(){
   refreshBadges();
   const R=rangeDays();
@@ -4144,10 +4270,37 @@ function renderAdmin(){
   /* CLIENTES */
   $('#avCli').innerHTML = panelTable('Clientes','Información de contacto, vehículos, cartera y financiación por cliente.',
     `<div class="tbar"><input class="finput" id="fCli" placeholder="Buscar nombre o documento...">
+      <button class="btn btn-p btn-sm" id="btnNuevoCli">+ Nuevo cliente</button>
       <button class="btn btn-o btn-sm" data-exp="clientes">Exportar</button></div>`,
     `<thead><tr><th>Cliente</th><th>Documento</th><th>Contacto</th><th>Vehículos</th><th>Cartera</th><th>Financiación</th><th></th></tr></thead>
      <tbody id="tbCli"></tbody>`);
   drawCli(); $('#fCli').addEventListener('input',drawCli);
+  $('#btnNuevoCli')?.addEventListener('click',()=>{
+    modal('Registrar nuevo cliente','<p style="font-size:.86rem;color:var(--ink-2);margin-bottom:16px">El cliente podrá ingresar al <b>portal cliente</b> con su número de documento y la placa de su vehículo.</p>'+
+      '<div class="fgrid">'+
+      '<div><label class="flabel">Nombre completo *</label><input id="ncName" class="finput" placeholder="Nombre y apellido"></div>'+
+      '<div><label class="flabel">Documento de identidad *</label><input id="ncDoc" class="finput" inputmode="numeric" placeholder="Cédula o NIT"></div>'+
+      '<div><label class="flabel">Celular</label><input id="ncPhone" class="finput" inputmode="tel" placeholder="3XX XXX XXXX"></div>'+
+      '<div><label class="flabel">Correo (opcional)</label><input id="ncEmail" class="finput" type="email" placeholder="correo@ejemplo.com"></div>'+
+      '<div><label class="flabel">Placa del vehículo *</label><input id="ncPlate" class="finput mono" style="text-transform:uppercase" placeholder="ABC123 o ABC12D"></div>'+
+      '<div><label class="flabel">Tipo de vehículo</label><select id="ncType" class="finput"><option value="">Detectar por placa</option><option value="automovil">Automóvil</option><option value="camioneta">Camioneta</option><option value="campero">Campero</option><option value="moto">Motocicleta</option><option value="taxi">Taxi</option><option value="electrico">Eléctrico</option><option value="hibrido">Híbrido</option></select></div>'+
+      '<div style="grid-column:1/-1"><label class="flabel">Fecha de vencimiento de la revisión (si la conoce)</label><input id="ncDue" class="finput" type="date"></div>'+
+      '</div>',
+      '<button class="btn btn-o" data-mclose>Cancelar</button><button class="btn btn-p" id="ncSave">Registrar cliente</button>');
+    $$('[data-mclose]').forEach(x=>x.addEventListener('click',closeModal));
+    $('#ncSave').addEventListener('click',()=>{
+      const nm=$('#ncName').value.trim(), doc=$('#ncDoc').value.trim(), ph=$('#ncPhone').value.trim();
+      const em=$('#ncEmail').value.trim(), pl=$('#ncPlate').value.trim().toUpperCase(), tp=$('#ncType').value;
+      const due=$('#ncDue').value||null;
+      if(!nm||!doc||!pl) return toast('Completa nombre, documento y placa');
+      const cl = crearClientePortal(doc, nm, ph, em, pl, tp||null);
+      if(cl && due){
+        const v = DB.vehicles.find(x=>x.plate===pl);
+        if(v) v.due = due;
+      }
+      closeModal();
+    });
+  });
 
   /* VEHÍCULOS */
   $('#avVeh').innerHTML = panelTable('Vehículos','Placa, propietario, historial y próximo vencimiento.',
